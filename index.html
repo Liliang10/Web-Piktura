@@ -591,13 +591,13 @@
             </div>
         </div>
 
-        <div class="relative w-full testimonial-swiper overflow-hidden">
+        <div class="relative w-full">
             <div class="absolute inset-0 z-10 pointer-events-none">
                 <div class="absolute inset-y-0 left-0 w-12 md:w-40 bg-gradient-to-r from-[#FAFAFA] to-transparent"></div>
                 <div class="absolute inset-y-0 right-0 w-12 md:w-40 bg-gradient-to-l from-[#FAFAFA] to-transparent"></div>
             </div>
 
-            <div class="swiper mySwiper-testimonial !pb-12 !px-6">
+            <div class="swiper mySwiper-testimonial !pb-12 !px-6 overflow-visible"> 
                 <div class="swiper-wrapper">
                     
                     <div class="swiper-slide !h-auto">
@@ -614,7 +614,7 @@
                                 </div>
                                 <span class="text-gray-100 text-3xl md:text-4xl font-serif">“</span>
                             </div>
-                            <p class="text-xs md:text-[15px] leading-relaxed italic">
+                            <p class="text-xs md:text-[15px] leading-relaxed italic text-gray-600">
                                 Awalnya ragu pakai jasa agency, tapi hasilnya luar biasa. Sekarang live selling rutin dan followers organic terus naik.
                             </p>
                         </div>
@@ -628,20 +628,19 @@
                                         <img src="images/Portofolio5.png" alt="Taufik Riza" class="w-full h-full object-cover">
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#434343] text-xs md:text-sm">Taufik Riza</h4>
-                                        <p class="text-gray-500 text-[9px] md:text-[10px]">Founder Glow Skincare</p>
+                                        <h4 class="font-bold text-[#434343] text-xs md:text-sm">Andini Putri</h4>
+                                        <p class="text-gray-500 text-[9px] md:text-[10px]">Beauty Specialist</p>
                                     </div>
                                 </div>
                                 <span class="text-gray-100 text-3xl md:text-4xl font-serif">“</span>
                             </div>
-                            <p class="text-xs md:text-[15px] leading-relaxed italic">
+                            <p class="text-xs md:text-[15px] leading-relaxed italic text-gray-600">
                                 Pelayanan sangat profesional dan sangat membantu pertumbuhan bisnis kami di media sosial.
                             </p>
                         </div>
                     </div>
 
-                    </div>
-                <div class="swiper-pagination !bottom-0"></div>
+                </div> <div class="swiper-pagination !bottom-0"></div>
             </div>
         </div>
     </section>
@@ -753,25 +752,28 @@
     });
 
 
-    const swiperTestimoni = new Swiper(".mySwiper-testimonial", {
-    slidesPerView: 1.2,
-    spaceBetween: 16,
-    loop: false, 
-    
-    grabCursor: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3, spaceBetween: 30 },
-    },
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiperTestimoni = new Swiper(".mySwiper-testimonial", {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            centeredSlides: true,
+            loop: false,
+            observer: true,
+            observeParents: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: { slidesPerView: 2, centeredSlides: false },
+                1024: { slidesPerView: 3, centeredSlides: false },
+            },
+        });
+    });
 </script>
 </body>
 </html>

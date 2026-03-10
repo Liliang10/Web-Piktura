@@ -754,40 +754,24 @@
 
 
     const swiperTestimoni = new Swiper(".mySwiper-testimonial", {
-        slidesPerView: 1.2,
-        centeredSlides: true,
-        spaceBetween: 16,
-        loop: true,
-        grabCursor: true,
-        
-        autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-        },
-        
-        pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-        },
-        
-        breakpoints: {
-        640: {
-            slidesPerView: 2,
-            centeredSlides: false,
-        },
-        768: {
-            slidesPerView: 2.5,
-            spaceBetween: 24,
-            centeredSlides: false,
-        },
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            centeredSlides: false,
-        },
-        },
-    });
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    loop: false, 
+    
+    grabCursor: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3, spaceBetween: 30 },
+    },
+  });
 </script>
 </body>
 </html>

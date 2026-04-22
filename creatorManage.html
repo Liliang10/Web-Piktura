@@ -18,9 +18,9 @@
             
             <ul class="hidden md:flex space-x-8 text-[12px] font-medium text-gray-500 tracking-wide">
                 <li><a href="index.html" class="hover:text-orange-500 transition">Beranda</a></li>
-                <li><a href="index.html#solusi" class="hover:text-orange-500 transition">Piktura School</a></li>
-                <li><a href="#" class="hover:text-orange-500 transition">Brand Management</a></li>
-                <li><a href="https://wa.me/6282234041064?text=Halo%20Piktura%2C%20saya%20ingin%20konsultasi%20Audit%20Akun%20Gratis" target="_blank" class="hover:text-orange-500 transition">Audit Akun Gratis</a></li>
+                <li><a href="socialMedia.html" class="hover:text-orange-500 transition">Audit Akun Gratis</a></li>
+                <li><a href="creatorManage.html" class="hover:text-orange-500 transition">Creator Management</a></li>
+                <li><a href="pikturaSchool.html" class="hover:text-orange-500 transition">Piktura School</a></li>
             </ul>
 
             <div class="flex items-center gap-3">
@@ -40,9 +40,9 @@
             
             <div class="flex flex-col space-y-4 text-center font-medium text-gray-600">
                 <a href="#" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Beranda</a>
-                <a href="index.html#solusi" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Piktura School</a>
-                <a href="#" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Brand Management</a>
-                <a href="https://wa.me/6282234041064?text=Halo%20Piktura%2C%20saya%20ingin%20konsultasi%20Audit%20Akun%20Gratis" target="_blank" class="hover:text-orange-500 transition">Audit Akun Gratis</a>
+                <a href="socialMedia.html" class="hover:text-orange-500 transition">Audit Akun Gratis</a>
+                <a href="creatorManage.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Creator Management</a>
+                <a href="pikturaSchool.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Piktura School</a>
             </div>
 
             <a href="https://wa.me/6282234041064" target="_blank" class="block w-full pt-2">
@@ -300,5 +300,24 @@
             </div>
         </div>
     </footer>
+
+        <script>
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        const mobileLinks = mobileMenu.querySelectorAll('a'); 
+
+        burgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    </script>
 </body>
 </html>

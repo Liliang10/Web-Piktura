@@ -18,7 +18,7 @@
             
             <ul class="hidden md:flex space-x-8 text-[12px] font-medium text-gray-500 tracking-wide">
                 <li><a href="index.html" class="hover:text-orange-500 transition">Beranda</a></li>
-                <li><a href="socialMedia.html" class="hover:text-orange-500 transition">Audit Akun Gratis</a></li>
+                <li><a href="socialMedia.html?showPopup=true" class="hover:text-orange-500 transition">Audit Akun Gratis</a></li>
                 <li><a href="creatorManage.html" class="hover:text-orange-500 transition">Creator Management</a></li>
                 <li><a href="pikturaSchool.html" class="hover:text-orange-500 transition">Piktura School</a></li>
             </ul>
@@ -40,7 +40,7 @@
             
             <div class="flex flex-col space-y-4 text-center font-medium text-gray-600">
                 <a href="index.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Beranda</a>
-                <a href="socialMedia.html" class="hover:text-orange-500 transition">Audit Akun Gratis</a>
+                <a href="socialMedia.html?showPopup=true" class="hover:text-orange-500 transition">Audit Akun Gratis</a>
                 <a href="creatorManage.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Brand Management</a>
                 <a href="pikturaSchool.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Piktura School</a>                    
             </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="pt-10 md:pl-12">
                 <span class="inline-block bg-orange-100 text-[9px] md:text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">• Social Media Management & Live Agency</span>
-                <h4 class="text-2xl md:text-3xl font-medium text-[#434343] mb-4">UMKM Anda Stuck Di Social Media?</h4>
+                <h4 class="text-2xl md:text-3xl font-medium text-[#434343] mb-4">Usaha Anda Stuck Di Social Media?</h4>
                 <p class="text-gray-500 text-xs md:text-base max-w-xl mx-auto mb-4">Kami bantu tingkatkan awareness, engagement, dan penjualan melalui strategi konten & live selling yang terbukti efektif.</p>
                 <ul class="text-gray-500 text-xs md:text-sm leading-relaxed space-y-4 mb-8">
                     <li class="flex items-start gap-3">
@@ -415,6 +415,34 @@
         </div>
     </footer>
 
+    <div id="audit-popup" class="fixed bottom-4 right-4 left-4 md:left-auto md:bottom-6 md:right-6 z-[100] hidden translate-y-10 opacity-0 transition-all duration-500 ease-out">
+        <div class="bg-white border border-gray-100 shadow-2xl rounded-2xl p-5 md:max-w-[280px] relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-24 h-24 bg-orange-100 rounded-full blur-2xl opacity-50"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shadow-lg shadow-orange-200">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <h5 class="font-bold text-[#434343] text-sm">Audit Akun Gratis!</h5>
+                </div>
+                <p class="text-gray-500 text-[11px] md:text-[11px] leading-relaxed mb-4">
+                    Dapatkan analisa mendalam untuk performa akun Social Media Anda sekarang juga.
+                </p>
+                
+                <a href="https://wa.me/6282234041064?text=Halo%20Piktura%2C%20saya%20ingin%20Audit%20Akun%20Gratis" target="_blank" 
+                class="flex items-center justify-center gap-2 bg-[#25D366] text-white py-3.5 rounded-xl text-xs font-bold shadow-md hover:bg-[#20ba5a] active:scale-95 transition-all">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    Klik di Sini via WA
+                </a>
+            </div>
+            
+            <button onclick="closePopup()" class="absolute top-2 right-2 text-gray-300 hover:text-gray-500 p-2">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+        </div>
+    </div>
+
     <script>
         const burgerBtn = document.getElementById('burger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -449,6 +477,32 @@
         const activeBtn = document.getElementById('btn-' + tabName);
         activeBtn.classList.add('text-black', 'bg-white', 'font-bold', 'shadow-sm');
         activeBtn.classList.remove('text-gray-500', 'font-medium');
+    }
+
+    function triggerAuditPopup() {
+        const params = new URLSearchParams(window.location.search);
+        const popup = document.getElementById('audit-popup');
+
+        if (params.get('showPopup') === 'true' && popup) {
+            popup.classList.remove('hidden');
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    popup.classList.remove('translate-y-10', 'opacity-0');
+                    popup.classList.add('translate-y-0', 'opacity-100');
+                }, 300);
+            });
+        }
+    }
+
+    window.addEventListener('load', triggerAuditPopup);
+
+    function closePopup() {
+        const popup = document.getElementById('audit-popup');
+        popup.classList.add('translate-y-10', 'opacity-0');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, 500);
     }
     </script>
 </body>

@@ -36,7 +36,7 @@
             </div>
         </nav>
 
-        <div id="mobile-menu" class="hidden fixed inset-x-4 top-24 bg-white border border-gray-100 p-6 rounded-2xl shadow-xl flex-col space-y-4 md:hidden z-50">
+        <div id="mobile-menu" class="hidden fixed inset-x-4 top-24 bg-white border border-gray-100 p-6 rounded-2xl shadow-xl flex-col space-y-4 md:hidden z-50 transition-all duration-300 transform origin-top scale-y-0 opacity-0">
             
             <div class="flex flex-col space-y-4 text-center font-medium text-gray-600">
                 <a href="index.html" class="py-2 border-b border-gray-50 hover:text-orange-500 transition">Beranda</a>
@@ -505,7 +505,7 @@
         </div>
     </footer>
 
-    <div id="audit-popup" class="fixed bottom-4 right-4 left-4 md:left-auto md:bottom-6 md:right-6 z-[100] hidden translate-y-10 opacity-0 transition-all duration-500 ease-out">
+    <div id="audit-popup" class="fixed bottom-4 right-4 left-4 md:left-auto md:bottom-6 md:right-6 z-[100] hidden scale-75 opacity-0 transition-all duration-500 ease-out">
     
         <div class="bg-white border border-gray-100 shadow-2xl rounded-2xl p-5 md:max-w-[280px] relative overflow-hidden max-h-[80vh] overflow-y-auto no-scrollbar">
             
@@ -539,18 +539,34 @@
     <script>
         const burgerBtn = document.getElementById('burger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
         const mobileLinks = mobileMenu.querySelectorAll('a'); 
 
         burgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+                    mobileMenu.classList.add('scale-y-100', 'opacity-100');
+                }, 10);
+            } else {
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                }, 300);
+            }
         });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('flex');
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                }, 300);
             });
         });
 
@@ -578,13 +594,11 @@
 
         if (params.get('showPopup') === 'true' && popup) {
             popup.classList.remove('hidden');
-
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    popup.classList.remove('translate-y-10', 'opacity-0');
-                    popup.classList.add('translate-y-0', 'opacity-100');
-                }, 300);
-            });
+            
+            setTimeout(() => {
+                popup.classList.remove('scale-75', 'opacity-0');
+                popup.classList.add('scale-100', 'opacity-100');
+            }, 10);
         }
     }
 
@@ -592,10 +606,13 @@
 
     function closePopup() {
         const popup = document.getElementById('audit-popup');
-        popup.classList.add('translate-y-10', 'opacity-0');
+        
+        popup.classList.remove('scale-100', 'opacity-100');
+        popup.classList.add('scale-75', 'opacity-0');
+        
         setTimeout(() => {
             popup.classList.add('hidden');
-        }, 500);
+        }, 500); 
     }
     </script>
 </body>

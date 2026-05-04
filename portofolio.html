@@ -526,36 +526,44 @@
     });
 
     const modal = document.getElementById('videoModal');
-    const modalContent = document.getElementById('modalContent');
+    const modalContent = modal.querySelector('div');
     const container = document.getElementById('tiktokContainer');
 
     function openVideo(videoId) {
-        container.innerHTML = '';
+        container.innerHTML = "";
+        container.scrollTop = 0;
 
         const bq = document.createElement('blockquote');
-        bq.className = 'tiktok-embed';
+        bq.className = "tiktok-embed";
         bq.setAttribute('cite', `https://www.tiktok.com/video/${videoId}`);
         bq.setAttribute('data-video-id', videoId);
         bq.style.width = "100%";
         bq.style.margin = "0"; 
         
+        const section = document.createElement('section');
+        bq.appendChild(section);
         container.appendChild(bq);
 
-        if (!window.TiktokEmbed) {
+        if (window.TiktokEmbed) {
+            window.TiktokEmbed.lib.render();
+        } else {
             const script = document.createElement('script');
             script.src = "https://www.tiktok.com/embed.js";
             script.async = true;
             document.body.appendChild(script);
-        } else {
-            window.TiktokEmbed.lib.render();
         }
 
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        modal.classList.add('opacity-100');
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.add('scale-100');
-        
-        document.body.style.overflow = 'hidden'; 
+        modal.classList.remove('hidden');
+
+        setTimeout(() => {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            
+            document.body.style.overflow = 'hidden'; 
+            document.body.style.paddingRight = '15px'; 
+        }, 10);
     }
 
     function closeVideo() {
@@ -564,12 +572,12 @@
         modalContent.classList.remove('scale-100');
         modalContent.classList.add('scale-95');
 
-        document.body.style.overflow = ''; 
-
         setTimeout(() => {
-            container.innerHTML = '';
-            modal.scrollTop = 0;
-        }, 500);
+            modal.classList.add('hidden');
+            container.innerHTML = "";
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0px';
+        }, 300);
     }
 
     document.querySelectorAll('.group').forEach(card => {

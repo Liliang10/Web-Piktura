@@ -581,25 +581,47 @@
     }
 
     document.querySelectorAll('.group').forEach(card => {
-    const video = card.querySelector('video');
-    
-    if (video) {
-        card.addEventListener('mouseenter', () => {
-            video.play();
-        });
+        const video = card.querySelector('video');
+        
+        if (video) {
+            card.addEventListener('mouseenter', () => {
+                video.play();
+            });
 
-        video.addEventListener('timeupdate', function() {
-            if (this.currentTime >= 10) {
-                this.currentTime = 0;
+            video.addEventListener('timeupdate', function() {
+                if (this.currentTime >= 10) {
+                    this.currentTime = 0;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
+
+    const observerOptions = {
+        threshold: 0.6
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target.querySelector('video');
+            if (video) {
+                if (entry.isIntersecting) {
+                    video.play();
+                } else {
+                    video.pause();
+                    video.currentTime = 0;
+                }
             }
         });
+    }, observerOptions);
 
-        card.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0;
-        });
-    }
-});
+    document.querySelectorAll('.group').forEach(card => {
+        observer.observe(card);
+    });
 </script>
 </body>
 </html>
